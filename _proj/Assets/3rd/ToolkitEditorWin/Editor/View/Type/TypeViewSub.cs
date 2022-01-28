@@ -9,7 +9,20 @@ namespace TA.Tools
     {
         public void DrawTypeSubGUI()
         {
-            DrawCharacterGUI();
+            EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
+            {
+                EditorGUILayout.LabelField(" ", GUILayout.Width(80), GUILayout.Height(30));
+                DrawCommonGUI();
+                DrawTAGUI();
+                DrawCharacterGUI();
+                DrawSceneGUI();
+                DrawVFXGUI();
+                DrawVFXScheme();
+                DrawResGUI();
+
+            }
+            EditorGUILayout.EndHorizontal();
+
         }
     }
 

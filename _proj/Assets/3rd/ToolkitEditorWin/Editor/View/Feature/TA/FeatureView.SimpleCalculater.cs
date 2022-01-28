@@ -5,11 +5,11 @@ using UnityEditor;
 
 namespace TA.Tools
 {
-    public partial class TypeViewSub : View
+    public partial class FeatureView : View
     {
-        public void DrawCharacterGUI()
+        public void DrawSimpleCalculaterGUI()
         {
-            TypeButton("角色");
+            FeatureButton("功能1");
         }
     }
 

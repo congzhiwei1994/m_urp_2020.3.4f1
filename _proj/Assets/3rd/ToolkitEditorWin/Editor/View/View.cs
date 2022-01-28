@@ -19,13 +19,19 @@ namespace TA.Tools
 
         public void DrawViewGUI()
         {
-            feature.DrawFeatureGUI();
             type.DrawTypeGUI();
+            feature.DrawFeatureGUI();
+
+
         }
 
-        public bool Button(string name)
+        public bool TypeButton(string name)
         {
-            return GUILayout.Button(name);
+            return GUILayout.Button(name, GUILayout.Width(80), GUILayout.Height(30));
+        }
+        public bool FeatureButton(string name)
+        {
+            return GUILayout.Button(name, GUILayout.Width(80), GUILayout.Height(40));
         }
     }
 

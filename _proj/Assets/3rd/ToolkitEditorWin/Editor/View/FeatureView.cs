@@ -5,13 +5,15 @@ using UnityEditor;
 
 namespace TA.Tools
 {
-    public class FeatureView
+    public partial class FeatureView
     {
         public void DrawFeatureGUI()
         {
-            EditorGUILayout.BeginVertical();
-            {
+            GUIStyle style = new GUIStyle(EditorStyles.helpBox);
 
+            EditorGUILayout.BeginVertical(style);
+            {
+                DrawOpenSceneGUI();
             }
             EditorGUILayout.EndVertical();
         }

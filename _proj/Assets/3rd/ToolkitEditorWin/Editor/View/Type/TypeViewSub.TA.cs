@@ -7,9 +7,9 @@ namespace TA.Tools
 {
     public partial class TypeViewSub : View
     {
-        public void DrawCharacterGUI()
+        public void DrawTAGUI()
         {
-            TypeButton("角色");
+            TypeButton("TA");
         }
     }
 
