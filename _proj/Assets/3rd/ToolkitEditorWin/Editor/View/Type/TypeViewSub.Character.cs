@@ -5,11 +5,11 @@ using UnityEditor;
 
 namespace TA.Tools
 {
-    public partial class TypeViewSub
+    public partial class TypeViewSub : View
     {
         public void DrawCharacterGUI()
         {
-
+            Button("TA");
         }
     }
 

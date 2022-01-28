@@ -14,7 +14,7 @@ namespace TA.Tools
         }
         public void DrawTypeGUI()
         {
-
+            typeSub.DrawTypeSubGUI();
         }
 
     }

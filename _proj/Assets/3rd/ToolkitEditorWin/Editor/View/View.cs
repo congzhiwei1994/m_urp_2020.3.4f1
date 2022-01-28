@@ -7,6 +7,7 @@ namespace TA.Tools
 {
     public class View
     {
+
         FeatureView feature;
         TypeView type;
         public void IntView()
@@ -20,6 +21,11 @@ namespace TA.Tools
         {
             feature.DrawFeatureGUI();
             type.DrawTypeGUI();
+        }
+
+        public bool Button(string name)
+        {
+            return GUILayout.Button(name);
         }
     }
 
