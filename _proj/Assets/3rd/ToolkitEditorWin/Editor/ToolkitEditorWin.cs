@@ -3,12 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class ArtToolEditorWin : EditorWindow
+namespace TA.Tools
 {
-    [MenuItem("TA/工具集")]
-    private static void Window()
+    public class ToolkitEditorWin : EditorWindow
     {
-        var win = GetWindow<ArtToolEditorWin>("工具集");
-        win.Show();
+
+        View view;
+
+        [MenuItem("TA/工具集")]
+        private static void Window()
+        {
+            var win = GetWindow<ToolkitEditorWin>("工具集");
+            win.Show();
+        }
+
+        private void OnEnable()
+        {
+            view = new View();
+            view.IntView();
+        }
+
+        void OnGUI()
+        {
+            view.DrawViewGUI();
+        }
+
+
+        private void OnDisable()
+        {
+
+        }
+
     }
+
 }
