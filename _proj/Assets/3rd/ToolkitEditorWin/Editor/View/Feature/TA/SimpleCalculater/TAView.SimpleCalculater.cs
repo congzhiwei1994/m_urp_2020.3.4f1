@@ -5,11 +5,12 @@ using UnityEditor;
 
 namespace TA.Tools
 {
-    public partial class TypeViewSub : View
+    public partial class TAView : View
     {
-        public void DrawVFXScheme()
+
+        public void DrawSimpleCalculaterGUI()
         {
-            TypeButton("策划");
+
         }
     }
 

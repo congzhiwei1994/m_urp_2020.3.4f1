@@ -14,9 +14,13 @@ namespace TA.Tools
         private static void Window()
         {
             var win = GetWindow<ToolkitEditorWin>("工具集");
-            win.maxSize = new Vector2(700, 400);
-            win.minSize = new Vector2(700, 400);
+            // win.maxSize = new Vector2(700, 400);
+            // win.minSize = new Vector2(700, 400);
             win.Show();
+        }
+        private void Awake()
+        {
+
         }
 
         private void OnEnable()

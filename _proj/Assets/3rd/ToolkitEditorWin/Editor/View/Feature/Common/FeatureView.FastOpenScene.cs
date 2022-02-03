@@ -10,7 +10,7 @@ namespace TA.Tools
         public bool openScene = true;
         public void DrawOpenSceneGUI()
         {
-            FeatureButton("快速打开场景");
+
         }
     }
 
