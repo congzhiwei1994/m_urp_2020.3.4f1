@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Internal;
+using System;
 
 namespace TA.Tools
 {
@@ -29,7 +31,7 @@ namespace TA.Tools
 
         public void DrawViewGUI()
         {
-            GUI.skin = skin;
+            // GUI.skin = skin;
             EditorGUILayout.BeginHorizontal(box, GUILayout.ExpandWidth(true), GUILayout.Height(30));
             {
                 EditorGUILayout.LabelField(" ", GUILayout.Width(100), GUILayout.Height(30));
@@ -73,6 +75,12 @@ namespace TA.Tools
         public bool Button(string name, Vector2 vector2)
         {
             return GUILayout.Button(name, GUILayout.Width(vector2.x), GUILayout.Height(vector2.y));
+        }
+
+        public Enum EnumPopup(string name, Enum select, Vector2 vector2)
+        {
+            select = EditorGUILayout.EnumPopup(name, select, GUILayout.Width(vector2.x), GUILayout.Height(vector2.y));
+            return select;
         }
     }
 
