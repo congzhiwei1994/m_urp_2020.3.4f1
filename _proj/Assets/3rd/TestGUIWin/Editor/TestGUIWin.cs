@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class TestGUIWin : EditorWindow
 {
-    [MenuItem("Jefford/TestGUIWin")]
+    [MenuItem("TA/TestGUIWin &D")]
     private static void Window()
     {
         var win = GetWindow<TestGUIWin>("TestGUIWin");
@@ -18,19 +18,20 @@ public class TestGUIWin : EditorWindow
 
     private void DrawGUI()
     {
-        EditorGUILayout.LabelField("LabelField");
-        EditorGUILayout.TextField("TextField");
-        EditorGUILayout.TagField("TagField");
-        EditorGUILayout.ToggleGroupScope ToggleGroupScope = new EditorGUILayout.ToggleGroupScope("ToggleGroupScope", true);
-        EditorGUILayout.ToggleLeft("ToggleLeft", true);
-        EditorGUILayout.Vector2Field("Vector2Field", Vector2.one);
-        EditorGUILayout.Vector3Field("Vector3Field", Vector3.zero);
-        EditorGUILayout.BoundsField("BoundsField", new Bounds());
-        EditorGUILayout.ColorField("ColorField", Color.blue);
-        EditorGUILayout.CurveField("CurveField", new AnimationCurve());
-        EditorGUILayout.DelayedDoubleField("DelayedDoubleField", double.MaxValue);
-        EditorGUILayout.EnumFlagsField("EnumFlagsField", UnityEngine.RenderMode.ScreenSpaceCamera);
-        EditorGUILayout.EnumPopup("EnumPopup", UnityEngine.RenderMode.ScreenSpaceCamera);
+        if (GUILayout.Button("Test"))
+        {
+            var go = Selection.activeGameObject;
+            // 记录上一步的状态
+            Undo.RecordObject(go, "Cube");
+            // 进行更改命名
+            go.name = "xxx";
+            // 开关游戏对象
+            // go.SetActive(!go.activeSelf);
 
+            StaticEditorFlags flags = StaticEditorFlags.ContributeGI | StaticEditorFlags.OccludeeStatic;
+            GameObjectUtility.SetStaticEditorFlags(go, flags);
+            go.tag = "EditorOnly";
+            Debug.LogError(go);
+        }
     }
 }

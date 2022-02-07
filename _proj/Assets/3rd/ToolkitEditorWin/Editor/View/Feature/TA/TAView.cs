@@ -18,9 +18,11 @@ namespace TA.Tools
         {
             EditorGUILayout.BeginHorizontal();
             {
+
                 taFeatID = SelectionGrid(taFeatID, taFeatName);
                 GUILayout.BeginScrollView(Vector2.zero, box);
                 {
+
                     switch (taFeatID)
                     {
                         case 0:

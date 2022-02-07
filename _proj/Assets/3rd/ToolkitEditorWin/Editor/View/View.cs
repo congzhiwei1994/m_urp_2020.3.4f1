@@ -14,7 +14,6 @@ namespace TA.Tools
         TAView taView;
         private GUISkin skin;
         public Vector2 size = new Vector2(80, 30);
-
         public GUIStyle box
         {
             get
@@ -22,16 +21,22 @@ namespace TA.Tools
                 return EditorStyles.helpBox;
             }
         }
+        private const string selectIDKey = "selectID";
 
         public void IntView()
         {
             skin = (GUISkin)AssetDatabase.LoadAssetAtPath("Assets/3rd/ToolkitEditorWin/Editor/ToolkitEditorWinSkin.guiskin", typeof(GUISkin));
             taView = new TAView();
+            typeID = EditorPrefs.GetInt("selectIDKey", 0);
+        }
+
+        public void DisView()
+        {
+            EditorPrefs.SetInt("selectIDKey", typeID);
         }
 
         public void DrawViewGUI()
         {
-            // GUI.skin = skin;
             EditorGUILayout.BeginHorizontal(box, GUILayout.ExpandWidth(true), GUILayout.Height(30));
             {
                 EditorGUILayout.LabelField(" ", GUILayout.Width(100), GUILayout.Height(30));
@@ -42,6 +47,7 @@ namespace TA.Tools
             EditorGUILayout.BeginVertical(box);
             {
                 DrawFeatureGUI(typeID);
+
             }
             EditorGUILayout.EndVertical();
         }

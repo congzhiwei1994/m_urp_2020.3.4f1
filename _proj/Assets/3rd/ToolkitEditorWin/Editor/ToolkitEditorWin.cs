@@ -37,7 +37,7 @@ namespace TA.Tools
 
         private void OnDisable()
         {
-
+            view.DisView();
         }
 
     }
