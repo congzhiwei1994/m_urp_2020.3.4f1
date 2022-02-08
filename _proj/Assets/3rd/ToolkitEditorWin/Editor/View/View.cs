@@ -37,17 +37,17 @@ namespace TA.Tools
 
         public void DrawViewGUI()
         {
-            EditorGUILayout.BeginHorizontal(box, GUILayout.ExpandWidth(true), GUILayout.Height(30));
+            GUI.skin = skin;
+            EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true), GUILayout.Height(30));
             {
                 EditorGUILayout.LabelField(" ", GUILayout.Width(100), GUILayout.Height(30));
                 typeID = GUILayout.SelectionGrid(typeID, typeName, 6, GUILayout.ExpandHeight(true));
             }
             EditorGUILayout.EndHorizontal();
             GUILayout.Space(5);
-            EditorGUILayout.BeginVertical(box);
+            EditorGUILayout.BeginVertical();
             {
                 DrawFeatureGUI(typeID);
-
             }
             EditorGUILayout.EndVertical();
         }

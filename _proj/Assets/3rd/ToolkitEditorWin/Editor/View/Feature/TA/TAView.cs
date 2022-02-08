@@ -20,6 +20,7 @@ namespace TA.Tools
             {
 
                 taFeatID = SelectionGrid(taFeatID, taFeatName);
+                GUIStyle style = new GUIStyle();
                 GUILayout.BeginScrollView(Vector2.zero, box);
                 {
 
