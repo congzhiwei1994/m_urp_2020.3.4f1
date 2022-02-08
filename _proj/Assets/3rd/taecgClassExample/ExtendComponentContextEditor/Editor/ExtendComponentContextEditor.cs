@@ -31,7 +31,7 @@ public class ExtendComponentContextEditor : Editor
     #endregion
 
     #region [自定义类的上下文拓展]
-    [MenuItem("CONTEXT/ExtendComponentContext/测试自定义类")]
+    // [MenuItem("CONTEXT/ExtendComponentContext/测试自定义类")]
     private static void CustormClass(MenuCommand Cmd)
     {
 

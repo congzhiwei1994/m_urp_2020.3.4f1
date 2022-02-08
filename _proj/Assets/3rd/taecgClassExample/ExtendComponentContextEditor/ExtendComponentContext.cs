@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class ExtendComponentContext : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // [ContextMenu("测试自定义类上下文菜单")]
+    // private void ContextFunction()
+    // {
+    //     Debug.LogError(name);
+    // }
 
-    // Update is called once per frame
-    void Update()
+    [ContextMenuItem("字段上的上下文菜单", "ContextFunction")]
+    public string Name;
+    [ContextMenu("测试自定义类上下文菜单")]
+    private void ContextFunction()
     {
-        
+        Debug.LogError(name);
     }
 }
