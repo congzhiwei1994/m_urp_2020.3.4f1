@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\3rd\taecgClassExample\ExtendComponentContextEditor\ExtendComponentContext.cs" />
      <Compile Include="Assets\3rd\taecgClassExample\Test.cs" />
+     <Compile Include="Assets\3rd\taecgClassExample\ScriptableObjectTutorial\ScriptableObjectTutorial.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/Soft/Work/Unity/2020.3.4f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
