@@ -15,6 +15,10 @@ public class ExtendProjectEditor
     [InitializeOnLoadMethod]
     private static void InitProject()
     {
-        Debug.LogError(0);
+        EditorApplication.projectWindowItemOnGUI = (string guid, Rect selectionRect) =>
+        {
+            // Debug.LogError(2);
+        };
+
     }
 }
