@@ -7,7 +7,7 @@ using System;
 
 public class ToolKitCtrl
 {
-    private const string toolPath = "/3rd/ToolkitEditorWin/Editor/Tools/OtherTool";
+    private const string toolPath = "/3rd/Toolkit/ToolKits";
     private Vector2Int size = new Vector2Int(1280, 720);
     private int maxShowCount = 5;
 
@@ -56,7 +56,7 @@ public class ToolKitCtrl
     public void DelateTool(string name)
     {
         BaseToolKit tool;
-        if (opened.TryGetValue(name,out tool))
+        if (opened.TryGetValue(name, out tool))
         {
             opened.Remove(name);
             openedStack.Remove(tool);
@@ -72,9 +72,9 @@ public class ToolKitCtrl
         //创建起始页
         NewTool(new ToolSercher());
         //加载所有工具Type
-        string fullPath = Application.dataPath+ toolPath;
+        string fullPath = Application.dataPath + toolPath;
         //获取指定路径下面的所有工具类
-        if (Directory.Exists( fullPath))
+        if (Directory.Exists(fullPath))
         {
             DirectoryInfo direction = new DirectoryInfo(fullPath);
             FileInfo[] files = direction.GetFiles("*", SearchOption.AllDirectories);
@@ -104,11 +104,11 @@ public class ToolKitCtrl
             {
                 int width = size.x;
                 if (openedStack.Count <= maxShowCount)
-                    width = openedStack.Count * (size.x/maxShowCount);
+                    width = openedStack.Count * (size.x / maxShowCount);
                 selected = GUILayout.Toolbar(selected, openedStack.Select(s => s.Content()).ToArray(), GUILayout.Width(width), GUILayout.ExpandHeight(true));
             }
             EditorGUILayout.EndHorizontal();
-            EditorGUILayout.BeginVertical("box",GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
+            EditorGUILayout.BeginVertical("box", GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
             {
                 openedStack[selected].OnGUI();
             }

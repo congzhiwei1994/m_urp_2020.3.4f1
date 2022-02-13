@@ -9,6 +9,9 @@ namespace TA.Tools
     {
 
         View view;
+        TAView taView;
+
+        public string[] typeName = new string[] { "共用", "角色", "场景", "特效", "TA", "资源检测" };
 
         [MenuItem("TA/工具集")]
         private static void Window()

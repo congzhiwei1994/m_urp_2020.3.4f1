@@ -36,37 +36,37 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\3rd\Toolkit\ToolSercher.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\BTool.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool5.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool1.cs" />
      <Compile Include="Assets\RenderSeting\Render\RealTimeShadow\RealTimeShadowRenderPass.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool7.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\ATool.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\TestTool.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool4.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolsMain.cs" />
      <Compile Include="Assets\3rd\taecgClassExample\ExtendComponentContextEditor\ExtendComponentContext.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool6.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool8.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool9.cs" />
      <Compile Include="Assets\RenderSeting\Render\TestShadow.cs" />
+     <Compile Include="Assets\3rd\Toolkit\BaseToolKit.cs" />
      <Compile Include="Assets\RenderSeting\Render\RealTimeShadow\ZoomUPRenderFeature.cs" />
      <Compile Include="Assets\RenderSeting\Render\RealTimeShadow\RealTimeShadowVolume.cs" />
      <Compile Include="Assets\3rd\taecgClassExample\ScriptableObjectTutorial\ScriptableObjectTutorial.cs" />
      <Compile Include="Assets\RenderSeting\Render\RealTimeShadow\RealTimeShadowRenderFeature.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool2.cs" />
      <Compile Include="Assets\3rd\taecgClassExample\ProjectHidden\ProjectHiddenEditorWindow.cs" />
+     <Compile Include="Assets\3rd\Toolkit\GUIStyleViewer.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool3.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKitCtrl.cs" />
      <Compile Include="Assets\3rd\taecgClassExample\Test.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\DTool.cs" />
      <Compile Include="Assets\RenderSeting\Render\PlaneShadow\PlaneShadowRenderFeature.cs" />
+     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool.cs" />
      <Compile Include="Assets\RenderSeting\Render\PlaneShadow\PlaneShadowRenderPass.cs" />
      <Compile Include="Assets\RenderSeting\Render\RealTimeShadow\ZoomUPRenderPass.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool3.cs" />
-     <Compile Include="Assets\3rd\Toolkit\BaseToolKit.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool8.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\TestTool.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\BTool.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool5.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\DTool.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool7.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool4.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolSercher.cs" />
-     <Compile Include="Assets\3rd\Toolkit\GUIStyleViewer.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolsMain.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool6.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\ATool.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKitCtrl.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool2.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool1.cs" />
-     <Compile Include="Assets\3rd\Toolkit\ToolKits\CTool9.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/Soft/Work/Unity/2020.3.4f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
