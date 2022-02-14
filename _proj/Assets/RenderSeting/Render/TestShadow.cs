@@ -13,15 +13,18 @@ public class TestShadow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        assets = new UniversalRenderPipelineAsset();
+
+        // assets = new UniversalRenderPipelineAsset();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        assets.shadowDistance = distance;
-        assets.useSRPBatcher = false;
+        RenderingData data = new RenderingData();
+        data.cameraData.maxShadowDistance = 90;
+        // assets.shadowDistance = distance;
+        // assets.useSRPBatcher = false;
 
         // AssetDatabase.SaveAssets();
     }

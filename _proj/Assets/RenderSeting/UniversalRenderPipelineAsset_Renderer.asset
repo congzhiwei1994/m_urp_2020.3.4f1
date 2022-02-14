@@ -71,4 +71,4 @@ MonoBehaviour:
   m_Active: 1
   settings:
     PassTag: RealTimeShadow
-    renderPassEvent: 250
+    renderPassEvent: 0
