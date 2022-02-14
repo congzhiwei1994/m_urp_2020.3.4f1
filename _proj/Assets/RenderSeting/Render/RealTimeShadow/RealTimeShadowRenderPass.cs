@@ -9,9 +9,11 @@ namespace App.Render
     public class RealTimeShadowRenderPass : ScriptableRenderPass
     {
         RealTimeShadowRenderFeature.RealShadowSettings settings;
-        public RealTimeShadowRenderPass(RealTimeShadowRenderFeature.RealShadowSettings settings)
+        UniversalRenderPipelineAsset rpAsset;
+        public RealTimeShadowRenderPass(RealTimeShadowRenderFeature.RealShadowSettings settings, UniversalRenderPipelineAsset asset)
         {
             this.settings = settings;
+            this.rpAsset = asset;
         }
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
@@ -21,15 +23,10 @@ namespace App.Render
             {
                 return;
             }
-            SetShadowParams();
-            Debug.LogError(renderingData.cameraData.maxShadowDistance);
+
+            rpAsset.shadowDistance = shadowVolume.shadowDistance.value;
+            // Debug.LogError(shadowVolume.shadowDistance.value);
         }
-
-        private void SetShadowParams()
-        {
-
-        }
-
     }
 }
 

@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using System;
-using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 namespace App.Render
 {
-    [Serializable, VolumeComponentMenu("DQ/RealTime Shadow")]
+    // volume路径
+    [Serializable, VolumeComponentMenu("Jefford/RealTime Shadow")]
     public class RealTimeShadowVolume : VolumeComponent, IPostProcessComponent
     {
+        // 暴露出来的参数
+        public FloatParameter shadowDistance = new FloatParameter(70);
         public BoolParameter enable = new BoolParameter(false);
         public bool IsActive()
         {
