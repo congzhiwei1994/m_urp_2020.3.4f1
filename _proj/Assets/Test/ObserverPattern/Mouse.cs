@@ -8,6 +8,8 @@ public class Mouse
     private string name;
     private string color;
 
+    private Cat _cat;
+
     public Mouse(string name, string color)
     {
         this.name = name;
@@ -21,4 +23,21 @@ public class Mouse
     {
         Debug.LogError(color + "的老鼠" + name + "说: 老猫了!赶紧跑.........");
     }
+
+    public void Watch(Cat cat)
+    {
+        _cat = cat;
+        cat.catComedlg += RunAway;
+    }
+
+    public void CancelWatch(Cat cat)
+    {
+        if (_cat != null)
+        {
+            _cat.catComedlg -= RunAway;
+            _cat = null;
+        }
+
+    }
+
 }

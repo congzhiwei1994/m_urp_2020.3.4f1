@@ -7,6 +7,19 @@ using UnityEngine;
 /// </summary>
 public class Cat
 {
+    // public static Cat instance
+    // {
+    //     get
+    //     {
+    //         if (_cat == null)
+    //         {
+    //             _cat = new Cat("mao", "yellow");
+    //         }
+    //         return _cat;
+    //     }
+    // }
+
+    // private static Cat _cat;
     private string name;
     private string color;
     public CatComedlg catComedlg;
