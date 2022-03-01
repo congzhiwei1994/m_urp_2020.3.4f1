@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: JiaXiong_Fur
+  m_Name: JiaXiong_body
   m_Shader: {fileID: 4800000, guid: edac85105dea6ca44865538f20852c2e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
