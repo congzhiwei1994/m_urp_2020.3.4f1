@@ -46,6 +46,15 @@ public class ProjectHiddenEditorWindow : EditorWindow
                 m_isHide[i] = isHide;
             }
         }
+    }
+
+    [InitializeOnLoadMethod]
+    private static void InitLoadProject()
+    {
+        EditorApplication.projectWindowItemOnGUI = (string guid, Rect selectionRect) =>
+        {
+            // Debug.LogError(guid);
+        };
 
     }
 }
