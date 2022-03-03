@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627cae87271e23b44980296874d3edc7, type: 3}
+  m_Name: ScenePath
+  m_EditorClassIdentifier: 
+  assetList:
+  - {fileID: 102900000, guid: 429b640d50443f5409a741bcf45be3d6, type: 3}
+  - {fileID: 102900000, guid: b8fcfa9f38329ee4b809b9fd1282769b, type: 3}
+  - {fileID: 102900000, guid: 45b28838c81242c4582557244af8a9ca, type: 3}
+  - {fileID: 102900000, guid: 69fb593dee1fdc94d9e15e4b8e430157, type: 3}
+  - {fileID: 102900000, guid: 3be2ed2ea2e9aa841a62116379c81a6f, type: 3}
+  - {fileID: 102900000, guid: 79b4a65d3b8adce43a961e5baa68112c, type: 3}
+  - {fileID: 102900000, guid: bd6cfea405b1fd64fbd9a278ec71317a, type: 3}
+  - {fileID: 102900000, guid: 58d12cb953ff82b4489d34d52854a6ee, type: 3}
+  - {fileID: 102900000, guid: b01fa52e77d838f4eb6e4c26edfbf6e3, type: 3}

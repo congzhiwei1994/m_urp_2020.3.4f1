@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace TA.Tools
+namespace Jefford.OpenScene
 {
-    public partial class TAView : View
+    public class OpenSceneEditorWin : EditorWindow
     {
-
-        public void DrawSimpleCalculaterGUI()
+        private static void Open()
         {
 
         }
     }
-
 }
+
