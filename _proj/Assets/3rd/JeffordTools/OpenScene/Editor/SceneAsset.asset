@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627cae87271e23b44980296874d3edc7, type: 3}
-  m_Name: ScenePath
+  m_Script: {fileID: 11500000, guid: d7bcd34874e7df7468d3e0fa18721bd3, type: 3}
+  m_Name: SceneAsset
   m_EditorClassIdentifier: 
-  assetList:
-  - {fileID: 102900000, guid: 61f211eb5d3062445877d4aa203ee3d2, type: 3}
+  assetList: []
