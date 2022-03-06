@@ -37,6 +37,8 @@ namespace Jefford.OpenScene
                 {
                     sceneAssetList.assetList.RemoveAt(i);
                 }
+
+
                 else
                 {
                     m_SceneDic.Add(asset.name, AssetDatabase.GetAssetPath(asset));
@@ -47,11 +49,15 @@ namespace Jefford.OpenScene
 
         private void OnGUI()
         {
+
             DrawOpenSceneGUI();
+            DrawCharacterGUI();
+
         }
 
         private void DrawOpenSceneGUI()
         {
+            EditorGUILayout.BeginScrollView(m_scrollViewPos, EditorStyles.helpBox, GUILayout.Height(200));
             EditorGUILayout.TextField("Search", "");
 
             for (var i = 0; i < m_SceneDic.Count; i++)
@@ -62,7 +68,7 @@ namespace Jefford.OpenScene
                 {
                     EditorGUILayout.LabelField(element.Key);
                     GUILayout.FlexibleSpace();
-                    if (GUILayout.Button("打开", GUILayout.Width(50)))
+                    if (GUILayout.Button("Open", GUILayout.Width(50)))
                     {
                         EditorSceneManager.OpenScene(element.Value);
                     }
@@ -73,7 +79,7 @@ namespace Jefford.OpenScene
                         EditorGUIUtility.PingObject(scene);
                     }
 
-                    if (GUILayout.Button("移除", GUILayout.Width(50)))
+                    if (GUILayout.Button("Remove", GUILayout.Width(70)))
                     {
                         m_SceneDic.Remove(element.Key);
 
@@ -87,9 +93,10 @@ namespace Jefford.OpenScene
 
             EditorGUILayout.BeginHorizontal();
             {
-                if (GUILayout.Button(new GUIContent("◕", "刷新"), GUILayout.Width(25)))
+                if (GUILayout.Button(new GUIContent("*", "刷新"), GUILayout.Width(25)))
                 {
                     Init();
+
                 }
 
                 if (GUILayout.Button(new GUIContent("+", "添加"), GUILayout.Width(25)))
@@ -102,10 +109,16 @@ namespace Jefford.OpenScene
                 }
 
             }
-            EditorGUILayout.BeginHorizontal();
-
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndScrollView();
         }
 
+        private void DrawCharacterGUI()
+        {
+
+            EditorGUILayout.LabelField("添加角色");
+
+        }
     }
 }
 
