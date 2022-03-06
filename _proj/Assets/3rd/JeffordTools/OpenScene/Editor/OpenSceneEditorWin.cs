@@ -76,6 +76,8 @@ namespace Jefford.OpenScene
                     if (GUILayout.Button("移除", GUILayout.Width(50)))
                     {
                         m_SceneDic.Remove(element.Key);
+
+                        sceneAssetList.assetList.Remove(AssetDatabase.LoadAssetAtPath<SceneAsset>(element.Value));
                     }
 
                 }
