@@ -124,11 +124,13 @@ namespace FastOpenScene
         void HandleObjectPickEvent()
         {
             var commandName = Event.current.commandName;
+            Debug.LogError(commandName);
             if (commandName == "ObjectSelectorUpdated")
             {
                 Repaint();
             }
-            
+
+
             if (commandName != "ObjectSelectorClosed" && EditorGUIUtility.GetObjectPickerControlID() != m_CurrPickerControlID)
             {
                 return;
