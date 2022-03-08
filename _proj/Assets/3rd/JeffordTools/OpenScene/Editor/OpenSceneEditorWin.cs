@@ -13,6 +13,12 @@ namespace Jefford.OpenScene
         private Dictionary<string, string> m_SceneDic = new Dictionary<string, string>();
         private Vector2 m_scrollViewPos = Vector2.zero;
         private int m_CurrPickerSceneControlID;
+        private List<GameObject> characterList = new List<GameObject>();
+        private Dictionary<string, string> m_CharacterDic = new Dictionary<string, string>();
+
+        private string m_SearchCharacter = "Name";
+
+        private const string m_characterPath = "Assets/Res/Example";
 
         [MenuItem("Jefford/打开场景工具")]
         private static void Open()
@@ -44,6 +50,7 @@ namespace Jefford.OpenScene
                     m_SceneDic.Add(asset.name, AssetDatabase.GetAssetPath(asset));
                 }
             }
+            LoadCharacterAssets();
         }
 
         private void OnGUI()
@@ -54,55 +61,65 @@ namespace Jefford.OpenScene
             DrawCharacterGUI();
         }
 
+        private void OnDisable()
+        {
+            if (m_CharacterDic.Count != 0)
+            {
+                m_CharacterDic.Clear();
+            }
+            m_SearchCharacter = "Name";
+        }
+
         private void DrawOpenSceneGUI()
         {
             EditorGUILayout.BeginScrollView(m_scrollViewPos, EditorStyles.helpBox, GUILayout.Height(200));
-            EditorGUILayout.TextField("Search", "");
-
-            for (var i = 0; i < m_SceneDic.Count; i++)
             {
-                var element = m_SceneDic.ElementAt(i);
+                EditorGUILayout.TextField("Search", "");
+
+                for (var i = 0; i < m_SceneDic.Count; i++)
+                {
+                    var element = m_SceneDic.ElementAt(i);
+
+                    EditorGUILayout.BeginHorizontal();
+                    {
+                        EditorGUILayout.LabelField(element.Key);
+                        GUILayout.FlexibleSpace();
+                        if (GUILayout.Button("Open", GUILayout.Width(50)))
+                        {
+                            EditorSceneManager.OpenScene(element.Value);
+                        }
+
+                        if (GUILayout.Button("Ping", GUILayout.Width(50)))
+                        {
+                            var scene = AssetDatabase.LoadAssetAtPath(element.Value, typeof(SceneAsset));
+                            EditorGUIUtility.PingObject(scene);
+                        }
+
+                        if (GUILayout.Button("Remove", GUILayout.Width(70)))
+                        {
+                            m_SceneDic.Remove(element.Key);
+                            sceneAssetList.assetList.Remove(AssetDatabase.LoadAssetAtPath<SceneAsset>(element.Value));
+                        }
+                    }
+                    EditorGUILayout.EndHorizontal();
+                }
 
                 EditorGUILayout.BeginHorizontal();
                 {
-                    EditorGUILayout.LabelField(element.Key);
-                    GUILayout.FlexibleSpace();
-                    if (GUILayout.Button("Open", GUILayout.Width(50)))
+                    if (GUILayout.Button(new GUIContent("*", "刷新"), GUILayout.Width(25)))
                     {
-                        EditorSceneManager.OpenScene(element.Value);
+                        Init();
                     }
 
-                    if (GUILayout.Button("Ping", GUILayout.Width(50)))
+                    if (GUILayout.Button(new GUIContent("+", "添加"), GUILayout.Width(25)))
                     {
-                        var scene = AssetDatabase.LoadAssetAtPath(element.Value, typeof(SceneAsset));
-                        EditorGUIUtility.PingObject(scene);
+                        m_CurrPickerSceneControlID = EditorGUIUtility.GetControlID(FocusType.Passive) + 10;
+                        EditorGUIUtility.ShowObjectPicker<SceneAsset>(null, true, "", m_CurrPickerSceneControlID);
                     }
 
-                    if (GUILayout.Button("Remove", GUILayout.Width(70)))
-                    {
-                        m_SceneDic.Remove(element.Key);
-                        sceneAssetList.assetList.Remove(AssetDatabase.LoadAssetAtPath<SceneAsset>(element.Value));
-                    }
                 }
                 EditorGUILayout.EndHorizontal();
             }
-
-            EditorGUILayout.BeginHorizontal();
-            {
-                if (GUILayout.Button(new GUIContent("*", "刷新"), GUILayout.Width(25)))
-                {
-                    Init();
-                }
-
-                if (GUILayout.Button(new GUIContent("+", "添加"), GUILayout.Width(25)))
-                {
-                    // 调出选择场景对象窗口
-                    m_CurrPickerSceneControlID = EditorGUIUtility.GetControlID(FocusType.Passive) + 10;
-                    EditorGUIUtility.ShowObjectPicker<SceneAsset>(null, true, "", m_CurrPickerSceneControlID);
-                }
-
-            }
-            EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndScrollView();
         }
 
@@ -133,15 +150,41 @@ namespace Jefford.OpenScene
         }
         private void DrawCharacterGUI()
         {
+            EditorGUILayout.BeginScrollView(m_scrollViewPos, EditorStyles.helpBox, GUILayout.Height(200));
+            {
+                EditorGUILayout.LabelField("添加角色");
+                m_SearchCharacter = EditorGUILayout.TextField("Search", m_SearchCharacter).ToLower();
 
-            EditorGUILayout.LabelField("添加角色");
+                foreach (var item in m_CharacterDic)
+                {
+                    if (item.Key.ToLower().Contains(m_SearchCharacter))
+                    {
+                        Debug.LogError(item.Key);
+                        EditorGUILayout.BeginHorizontal();
+                        {
+                            EditorGUILayout.LabelField(item.Key);
+                            if (GUILayout.Button("Add", GUILayout.Width(50)))
+                            {
+                                var go = AssetDatabase.LoadAssetAtPath(item.Value, typeof(GameObject));
+                                Selection.activeObject = PrefabUtility.InstantiatePrefab(go);
+                            }
+                        }
+                        EditorGUILayout.EndHorizontal();
+                    }
+                }
+            }
+            EditorGUILayout.EndScrollView();
+        }
 
-            var guids = AssetDatabase.FindAssets("t:GameObject");
+        private void LoadCharacterAssets()
+        {
+            m_CharacterDic.Clear();
+            var guids = AssetDatabase.FindAssets("t:prefab", new string[] { m_characterPath });
             foreach (var guid in guids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
                 var go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-                EditorGUILayout.ObjectField(go, typeof(GameObject), false);
+                m_CharacterDic.Add(go.name, AssetDatabase.GetAssetPath(go));
             }
         }
     }

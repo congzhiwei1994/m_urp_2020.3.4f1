@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7bcd34874e7df7468d3e0fa18721bd3, type: 3}
   m_Name: SceneAsset
   m_EditorClassIdentifier: 
-  assetList: []
+  assetList:
+  - {fileID: 102900000, guid: f746c281dcbd33b438089d8ff6345d53, type: 3}
+  - {fileID: 102900000, guid: 26cad3a1b9e299044b68470530f7b584, type: 3}
+  - {fileID: 102900000, guid: 68bf9e1ed14b0a4489c4197ef0bd471d, type: 3}
