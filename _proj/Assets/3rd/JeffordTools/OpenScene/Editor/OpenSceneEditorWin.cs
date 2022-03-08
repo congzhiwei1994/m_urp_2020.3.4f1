@@ -171,6 +171,11 @@ namespace Jefford.OpenScene
                         }
                         EditorGUILayout.EndHorizontal();
                     }
+
+                    else
+                    {
+                        EditorGUILayout.HelpBox("Not Find", MessageType.Warning);
+                    }
                 }
             }
             EditorGUILayout.EndScrollView();
