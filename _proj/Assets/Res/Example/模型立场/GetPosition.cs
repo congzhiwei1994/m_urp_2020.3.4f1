@@ -7,6 +7,7 @@ public class GetPosition : MonoBehaviour
 {
     public Material m_matetial;
     public GameObject m_go;
+    public string m_matName;
     void Start()
     {
 
@@ -15,9 +16,9 @@ public class GetPosition : MonoBehaviour
 
     void Update()
     {
-        if (m_go != null && m_matetial != null)
+        if (m_go != null && m_matetial != null && !string.IsNullOrEmpty(m_matName))
         {
-            m_matetial.SetVector("_Position", m_go.transform.position);
+            m_matetial.SetVector(m_matName, m_go.transform.position);
         }
 
 
