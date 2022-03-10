@@ -13,7 +13,7 @@ namespace Jefford.OpenScene
         private Dictionary<string, string> m_SceneDic = new Dictionary<string, string>();
         private Vector2 m_scrollViewPos = Vector2.zero;
         private int m_CurrPickerSceneControlID;
-        private List<GameObject> characterList = new List<GameObject>();
+        private int m_CurrPickerCharacterControlID;
         private Dictionary<string, string> m_CharacterDic = new Dictionary<string, string>();
 
         private string m_SearchCharacter = "Name";
@@ -50,15 +50,15 @@ namespace Jefford.OpenScene
                     m_SceneDic.Add(asset.name, AssetDatabase.GetAssetPath(asset));
                 }
             }
-            LoadCharacterAssets();
         }
 
         private void OnGUI()
         {
 
             DrawOpenSceneGUI();
-            HandleSceneAssetPickEvent();
             DrawCharacterGUI();
+            HandleSceneAssetPickEvent();
+
         }
 
         private void OnDisable()
@@ -116,11 +116,21 @@ namespace Jefford.OpenScene
                         m_CurrPickerSceneControlID = EditorGUIUtility.GetControlID(FocusType.Passive) + 10;
                         EditorGUIUtility.ShowObjectPicker<SceneAsset>(null, true, "", m_CurrPickerSceneControlID);
                     }
-
                 }
                 EditorGUILayout.EndHorizontal();
             }
             EditorGUILayout.EndScrollView();
+        }
+
+        private void DrawCharacterGUI()
+        {
+            if (GUILayout.Button(new GUIContent("+", "添加"), GUILayout.Width(25)))
+            {
+                m_CurrPickerCharacterControlID = EditorGUIUtility.GetControlID(FocusType.Passive) + 100;
+                EditorGUIUtility.ShowObjectPicker<GameObject>(null, true, "", m_CurrPickerCharacterControlID);
+                return;
+            }
+
         }
 
         private void HandleSceneAssetPickEvent()
@@ -131,65 +141,33 @@ namespace Jefford.OpenScene
                 Repaint();
             }
 
-            if (commandName != "ObjectSelectorClosed" && EditorGUIUtility.GetObjectPickerControlID() != m_CurrPickerSceneControlID)
+            if (commandName != "ObjectSelectorClosed")
             {
                 return;
             }
 
-            m_CurrPickerSceneControlID = -1;
-
-            var sceneAsset = (SceneAsset)EditorGUIUtility.GetObjectPickerObject();
-            if (sceneAsset == null)
+            if (EditorGUIUtility.GetObjectPickerControlID() == m_CurrPickerSceneControlID)
             {
-                return;
-            }
-
-            m_SceneDic.Add(sceneAsset.name, AssetDatabase.GetAssetPath(sceneAsset));
-            sceneAssetList.assetList.Add(sceneAsset);
-            EditorUtility.SetDirty(sceneAssetList);
-        }
-        private void DrawCharacterGUI()
-        {
-            EditorGUILayout.BeginScrollView(m_scrollViewPos, EditorStyles.helpBox, GUILayout.Height(200));
-            {
-                EditorGUILayout.LabelField("添加角色");
-                m_SearchCharacter = EditorGUILayout.TextField("Search", m_SearchCharacter).ToLower();
-
-                foreach (var item in m_CharacterDic)
+                var sceneAsset = (SceneAsset)EditorGUIUtility.GetObjectPickerObject();
+                if (sceneAsset == null)
                 {
-                    if (item.Key.ToLower().Contains(m_SearchCharacter))
-                    {
-                        Debug.LogError(item.Key);
-                        EditorGUILayout.BeginHorizontal();
-                        {
-                            EditorGUILayout.LabelField(item.Key);
-                            if (GUILayout.Button("Add", GUILayout.Width(50)))
-                            {
-                                var go = AssetDatabase.LoadAssetAtPath(item.Value, typeof(GameObject));
-                                Selection.activeObject = PrefabUtility.InstantiatePrefab(go);
-                            }
-                        }
-                        EditorGUILayout.EndHorizontal();
-                    }
+                    return;
+                }
 
-                    else
-                    {
-                        EditorGUILayout.HelpBox("Not Find", MessageType.Warning);
-                    }
+                if (!m_SceneDic.ContainsKey(sceneAsset.name))
+                {
+                    m_SceneDic.Add(sceneAsset.name, AssetDatabase.GetAssetPath(sceneAsset));
+                    sceneAssetList.assetList.Add(sceneAsset);
+                    EditorUtility.SetDirty(sceneAssetList);
                 }
             }
-            EditorGUILayout.EndScrollView();
-        }
-
-        private void LoadCharacterAssets()
-        {
-            m_CharacterDic.Clear();
-            var guids = AssetDatabase.FindAssets("t:prefab", new string[] { m_characterPath });
-            foreach (var guid in guids)
+            else
             {
-                var path = AssetDatabase.GUIDToAssetPath(guid);
-                var go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-                m_CharacterDic.Add(go.name, AssetDatabase.GetAssetPath(go));
+                var prefab = (GameObject)EditorGUIUtility.GetObjectPickerObject();
+                if (prefab != null)
+                {
+                    Debug.LogError(prefab.name);
+                }
             }
         }
     }
