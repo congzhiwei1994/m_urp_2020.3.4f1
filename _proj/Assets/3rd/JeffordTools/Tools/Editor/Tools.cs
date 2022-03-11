@@ -7,11 +7,11 @@ namespace Jefford.Tools
 {
     public class Tools : EditorWindow
     {
-        TAView taView;
-        CharacterView characterView;
-        SceneView sceneView;
+        private Dictionary<int, string> m_typeDic = new Dictionary<int, string>();
+        private List<string> m_typeNameList = new List<string>();
+        private int m_typeID;
 
-        [MenuItem("TA/工具合集 &x")]
+        [MenuItem("Jefford/工具合集 &x")]
         private static void Window()
         {
             var win = GetWindow<Tools>("工具集");
@@ -20,25 +20,38 @@ namespace Jefford.Tools
 
         private void OnEnable()
         {
-            // 初始化界面
             InitView();
         }
         void InitView()
         {
-            taView = new TAView();
-            characterView = new CharacterView();
-            sceneView = new SceneView();
+            m_typeDic.Add(0, "美术");
+            m_typeDic.Add(1, "TA");
+            m_typeDic.Add(2, "资源检测");
+
+            m_typeNameList.Clear();
+            foreach (var item in m_typeDic)
+            {
+                m_typeNameList.Add(item.Value);
+            }
+
         }
         void OnGUI()
         {
-            UpdateGUI();
+            DrawTypeGUI();
         }
 
-        void UpdateGUI()
+        void DrawTypeGUI()
         {
-            taView.UpdateView();
-            characterView.UpdateView();
-            sceneView.UpdateView();
+            EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true), GUILayout.Height(30));
+            {
+                EditorGUILayout.LabelField(" ", GUILayout.Width(100), GUILayout.Height(30));
+                var typeID = GUILayout.SelectionGrid(m_typeID, m_typeNameList.ToArray(), m_typeDic.Count, GUILayout.ExpandHeight(true));
+                if (typeID != m_typeID)
+                {
+                    m_typeID = typeID;
+                }
+            }
+            EditorGUILayout.EndHorizontal();
         }
 
         private void OnDisable()

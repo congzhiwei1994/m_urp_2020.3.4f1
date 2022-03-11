@@ -74,8 +74,6 @@ namespace Jefford.OpenScene
         {
             EditorGUILayout.BeginScrollView(m_scrollViewPos, EditorStyles.helpBox, GUILayout.Height(200));
             {
-                EditorGUILayout.TextField("Search", "");
-
                 for (var i = 0; i < m_SceneDic.Count; i++)
                 {
                     var element = m_SceneDic.ElementAt(i);
@@ -83,7 +81,7 @@ namespace Jefford.OpenScene
                     EditorGUILayout.BeginHorizontal();
                     {
                         EditorGUILayout.LabelField(element.Key);
-                        GUILayout.FlexibleSpace();
+
                         if (GUILayout.Button("Open", GUILayout.Width(50)))
                         {
                             EditorSceneManager.OpenScene(element.Value);

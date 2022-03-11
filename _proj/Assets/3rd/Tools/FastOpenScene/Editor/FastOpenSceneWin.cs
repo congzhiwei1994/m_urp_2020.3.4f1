@@ -111,7 +111,7 @@ namespace FastOpenScene
                         {
                             m_CurrPickerControlID = EditorGUIUtility.GetControlID(FocusType.Passive) + 100;
                             EditorGUIUtility.ShowObjectPicker<SceneAsset>(null, false, "", m_CurrPickerControlID);
-                            return;
+                            // return;
                         }
                     }
                     EditorGUILayout.EndHorizontal();
@@ -124,26 +124,20 @@ namespace FastOpenScene
         void HandleObjectPickEvent()
         {
             var commandName = Event.current.commandName;
-            Debug.LogError(commandName);
             if (commandName == "ObjectSelectorUpdated")
             {
                 Repaint();
             }
-
-
             if (commandName != "ObjectSelectorClosed" && EditorGUIUtility.GetObjectPickerControlID() != m_CurrPickerControlID)
             {
                 return;
             }
-
             m_CurrPickerControlID = -1;
-
             var asset = EditorGUIUtility.GetObjectPickerObject() as SceneAsset;
             if (asset == null)
             {
                 return;
             }
-
             if (m_SceneDict.ContainsKey(asset.name))
             {
                 return;
