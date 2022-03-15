@@ -59,6 +59,7 @@ namespace Jefford.EnvironmentEditor
             var rootGOs = scene.GetRootGameObjects();
             foreach (var go in rootGOs)
             {
+                Debug.LogError(go.name);
                 if (go.name == name)
                 {
                     return go;
