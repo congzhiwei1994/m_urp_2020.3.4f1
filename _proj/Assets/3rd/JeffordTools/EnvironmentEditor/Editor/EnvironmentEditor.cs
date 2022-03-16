@@ -49,7 +49,7 @@ namespace Jefford.EnvironmentEditor
             {
                 go = new GameObject(EnvRootName);
             }
-            var env = GetOrAddComponent<Environment>(go);
+            m_status.m_environment = GetOrAddComponent<Environment>(go);
 
             m_status.Init();
         }
@@ -59,7 +59,6 @@ namespace Jefford.EnvironmentEditor
             var rootGOs = scene.GetRootGameObjects();
             foreach (var go in rootGOs)
             {
-                Debug.LogError(go.name);
                 if (go.name == name)
                 {
                     return go;
