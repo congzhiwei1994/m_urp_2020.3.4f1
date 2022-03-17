@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class ConstantsView : MonoBehaviour
+namespace Jefford.EnvironmentEditor
 {
-    // Start is called before the first frame update
-    void Start()
+    public partial class ConstantsView : View
     {
-        
+        public ConstantsView() : base("Constants", true)
+        {
+
+        }
+
+        protected override void OnViewGUI(Event e)
+        {
+            base.OnViewGUI(e);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

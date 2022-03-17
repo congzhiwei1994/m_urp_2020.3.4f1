@@ -9,6 +9,7 @@ namespace Jefford.EnvironmentEditor
     {
         private string m_title;
         private bool m_isScrollable;
+        private Vector2 m_scrollViewPos = Vector2.zero;
 
         /// <summary>
         /// 面板
@@ -20,5 +21,37 @@ namespace Jefford.EnvironmentEditor
             m_title = title;
             m_isScrollable = isScrollable;
         }
+
+        public void UpdateViewGUI(Event e, Rect rect)
+        {
+            if (m_isScrollable)
+            {
+                m_scrollViewPos = EditorGUILayout.BeginScrollView(m_scrollViewPos, GUILayout.Width(rect.width), GUILayout.Height(rect.height));
+                OnViewGUI(e);
+                EditorGUILayout.EndScrollView();
+            }
+
+            else
+            {
+                OnViewGUI(e);
+            }
+        }
+
+        public void OnDestroy()
+        {
+            OnClose();
+        }
+
+        protected virtual void OnClose()
+        {
+
+        }
+
+        protected virtual void OnViewGUI(Event e)
+        {
+
+        }
+
+
     }
 }

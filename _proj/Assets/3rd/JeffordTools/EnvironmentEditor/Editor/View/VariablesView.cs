@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEditor;
 namespace Jefford.EnvironmentEditor
 {
-    public class VariablesView : View
+    public partial class VariablesView : View
     {
-        private VariablesView() : base("Variables", true)
+        public VariablesView() : base("Variables", true)
         {
 
         }

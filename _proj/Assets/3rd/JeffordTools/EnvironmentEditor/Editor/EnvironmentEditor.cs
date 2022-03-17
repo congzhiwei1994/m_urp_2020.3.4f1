@@ -12,6 +12,8 @@ namespace Jefford.EnvironmentEditor
         private const string EnvRootName = "Environment";
         private static string m_currentScenePath;
         private EnvironmentStatus m_status;
+        private VariablesView m_variablesView;
+        private ConstantsView m_constantsView;
 
 
 
@@ -22,7 +24,6 @@ namespace Jefford.EnvironmentEditor
             window.Show();
 
             m_currentScenePath = EditorSceneManager.GetActiveScene().path;
-
         }
 
         private void OnEnable()
@@ -37,7 +38,8 @@ namespace Jefford.EnvironmentEditor
         }
         private void InitView()
         {
-
+            m_variablesView = new VariablesView();
+            m_constantsView = new ConstantsView();
         }
 
         private void InitStatus()
@@ -52,6 +54,18 @@ namespace Jefford.EnvironmentEditor
             m_status.m_environment = GetOrAddComponent<Environment>(go);
 
             m_status.Init();
+        }
+
+        private void OnGUI()
+        {
+            Event e = Event.current;
+            UpdateGUI(e);
+        }
+
+        private void UpdateGUI(Event e)
+        {
+            m_variablesView.UpdateViewGUI(e, new Rect());
+            m_constantsView.UpdateViewGUI(e, new Rect());
         }
 
         private GameObject FindSceneObject(Scene scene, string name)
