@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
+using Scene = UnityEngine.SceneManagement.Scene;
 
 namespace Jefford.EnvironmentEditor
 {
@@ -11,15 +13,19 @@ namespace Jefford.EnvironmentEditor
         private bool m_isScrollable;
         private Vector2 m_scrollViewPos = Vector2.zero;
 
-        /// <summary>
-        /// 面板
-        /// </summary>
-        /// <param name="title"></名字>
-        /// <param name="isScrollable"></是否可以拖动>
         public View(string title, bool isScrollable = false)
         {
             m_title = title;
             m_isScrollable = isScrollable;
+        }
+
+        public void MakeDirty(UnityEngine.Object objectUndo = null, string undoName = "")
+        {
+            if (objectUndo != null)
+            {
+                Undo.RecordObject(objectUndo, undoName);
+            }
+            EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
         }
 
         public void UpdateViewGUI(Event e, Rect rect)
