@@ -14,6 +14,7 @@ namespace Jefford.EnvironmentEditor
         private EnvironmentStatus m_status;
         private VariablesView m_variablesView;
         private ConstantsView m_constantsView;
+        private Scene m_currentScene;
 
 
 
@@ -59,6 +60,13 @@ namespace Jefford.EnvironmentEditor
         private void OnGUI()
         {
             Event e = Event.current;
+            // 打开编辑器切换场景的情况下进行初始化
+            var activeScene = EditorSceneManager.GetActiveScene().path;
+            if (activeScene != m_currentScenePath)
+            {
+                m_currentScenePath = activeScene;
+                InitWindow();
+            }
             UpdateGUI(e);
         }
 
