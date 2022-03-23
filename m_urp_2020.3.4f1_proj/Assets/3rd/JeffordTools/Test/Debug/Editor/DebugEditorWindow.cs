@@ -7,11 +7,7 @@ using Jefford.Csharp;
 
 public class DebugEditorWindow : EditorWindow
 {
-    MyDelegateClass m_myClass;
-    M_Delegate m_Delegate;
-    IntDelegate m_intDel;
-    RefDelegate m_refDel;
-
+    Delegate01 m_del01;
     [MenuItem("Jefford/DebugEditorWindow")]
     private static void Open()
     {
@@ -21,18 +17,35 @@ public class DebugEditorWindow : EditorWindow
 
     private void OnEnable()
     {
-        m_myClass = new MyDelegateClass();
-        // void 类型
-        m_Delegate = m_myClass.DelegateFun01;
-        m_Delegate += m_myClass.DelegateFun02;
 
-        // Int 类型
-        m_intDel = m_myClass.DelIntFun01;
-        m_intDel += m_myClass.DelIntFun02;
-        m_intDel += MyDelegateClass.DelIntFun03;
+        m_del01 = delegate (int value)
+        {
+            return value;
+        };
 
-        // ref
-        m_refDel = m_myClass.RefDelFun01;
+        //Lambda表达式
+        m_del01 = (int value) =>
+        {
+            return value;
+        };
+
+        // 没有参数的话要有双括号
+        m_del01 = (value) =>
+        {
+            return value;
+        };
+
+        // 如果只有一个参数的话
+        m_del01 = value =>
+        {
+            return value;
+        };
+
+        // 如果只返回一条语句的话
+        m_del01 = value => value;
+
+
+
     }
 
     private void OnGUI()
@@ -40,10 +53,9 @@ public class DebugEditorWindow : EditorWindow
 
         if (GUILayout.Button("测试"))
         {
-            if (m_refDel != null)
+            if (m_del01 != null)
             {
-                int value = 5;
-                m_refDel(ref value);
+                m_del01(5);
             }
         }
 
