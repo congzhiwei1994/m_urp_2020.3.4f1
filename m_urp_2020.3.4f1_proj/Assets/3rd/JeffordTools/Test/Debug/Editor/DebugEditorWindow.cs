@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using Jefford.Csharp;
+using System;
+
 
 public class DebugEditorWindow : EditorWindow
 {
-    Delegate01 m_del01;
+    private GameObject m_gameObject;
+
     [MenuItem("Jefford/DebugEditorWindow")]
     private static void Open()
     {
@@ -18,46 +21,22 @@ public class DebugEditorWindow : EditorWindow
     private void OnEnable()
     {
 
-        m_del01 = delegate (int value)
-        {
-            return value;
-        };
-
-        //Lambda表达式
-        m_del01 = (int value) =>
-        {
-            return value;
-        };
-
-        // 没有参数的话要有双括号
-        m_del01 = (value) =>
-        {
-            return value;
-        };
-
-        // 如果只有一个参数的话
-        m_del01 = value =>
-        {
-            return value;
-        };
-
-        // 如果只返回一条语句的话
-        m_del01 = value => value;
-
-
-
     }
 
     private void OnGUI()
     {
-
         if (GUILayout.Button("测试"))
         {
-            if (m_del01 != null)
-            {
-                m_del01(5);
-            }
+            m_gameObject.Rename("New Name");
         }
 
+    }
+}
+
+public static class MyGameObject
+{
+    public static void Rename(this GameObject go, string newName)
+    {
+        go.name = newName;
     }
 }
