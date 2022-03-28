@@ -125,8 +125,20 @@ namespace Jefford.MaterialGenerate
             }
 
             m_materialGenetate.m_config = null;
-            m_config = null;
+            config = null;
             selectIndex = newIndex;
+
+            Type selectType = null;
+            if (selectIndex >= 0 && selectIndex < MaterialGenerate.m_AllConfigType.Count)
+            {
+                selectType = MaterialGenerate.m_AllConfigType[selectIndex];
+            }
+
+            if (selectType != null)
+            {
+                config = (MaterialConfig)CreateInstance(selectType);
+            }
+
 
 
         }
