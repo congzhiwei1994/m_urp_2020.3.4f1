@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: New Material Generate
   m_EditorClassIdentifier: 
   m_config: {fileID: 0}
-  m_materialList: []
+  m_materialList:
+  - {fileID: 0}

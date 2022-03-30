@@ -18,12 +18,17 @@ namespace Jefford.MaterialGenerate
         public List<Material> m_materialList;
 
         private static List<Type> m_allConfigType = null;
+        /// <summary>
+        /// 材质生成器的类型
+        /// </summary>
+        /// <value></value>
         public static List<Type> m_AllConfigType
         {
             get
             {
                 if (m_allConfigType == null || m_allConfigType.Count == 0)
                 {
+                    // 获取所有继承自MaterialConfig类并且不为Abstract(抽象)类，并且将其转换成集合
                     m_allConfigType = CoreUtils.GetAllTypesDerivedFrom<MaterialConfig>().Where(t => !t.IsAbstract).ToList();
                 }
 
@@ -38,7 +43,7 @@ namespace Jefford.MaterialGenerate
             {
                 return true;
             }
-
+            // 获取目录名
             var folder = Path.GetDirectoryName(path);
             if (m_materialList == null)
             {
@@ -73,6 +78,7 @@ namespace Jefford.MaterialGenerate
         {
             base.OnInspectorGUI();
             MaterialGenerate m_materialGenetate;
+            // 指定重写的对象
             m_materialGenetate = this.target as MaterialGenerate;
 
             if (!m_materialGenetate.CheckPathValid())
@@ -82,7 +88,6 @@ namespace Jefford.MaterialGenerate
             }
 
             var config = m_materialGenetate.m_config;
-
             // 判断并且获取继承MaterialConfig非抽象类的索引
             var selectIndex = MaterialGenerate.m_AllConfigType.FindIndex(type =>
             {
@@ -91,17 +96,17 @@ namespace Jefford.MaterialGenerate
                     return false;
                 }
                 return type == config.GetType();
-            }
-              );
+            });
+            Debug.LogError("selectIndex" + "======" + selectIndex);
 
             // 将继承自MaterialConfig的非抽象类的类型转换成string类型
             var nameList = MaterialGenerate.m_AllConfigType.ConvertAll<string>(type =>
             {
                 var t = CreateInstance(type) as MaterialConfig;
                 return t.GetDisPlayName();
-            }
-              );
+            });
 
+            // 获取材质生成器的路径
             var path = AssetDatabase.GetAssetPath(m_materialGenetate);
 
             var newIndex = EditorGUILayout.Popup(selectIndex, nameList.ToArray());
@@ -122,24 +127,27 @@ namespace Jefford.MaterialGenerate
                     AssetDatabase.SaveAssets();
                     AssetDatabase.Refresh();
                 }
+
+                m_materialGenetate.m_config = null;
+                config = null;
+                selectIndex = newIndex;
+
+                Type selectType = null;
+                if (selectIndex >= 0 && selectIndex < MaterialGenerate.m_AllConfigType.Count)
+                {
+                    selectType = MaterialGenerate.m_AllConfigType[selectIndex];
+                }
+
+                if (selectType != null)
+                {
+                    config = (MaterialConfig)CreateInstance(selectType);
+                    config.name = config.GetDisPlayName();
+                    m_materialGenetate.m_config = config;
+                    // 将 config 添加到指定路径path处的Asset文件
+                    AssetDatabase.AddObjectToAsset(config, path);
+                }
+
             }
-
-            m_materialGenetate.m_config = null;
-            config = null;
-            selectIndex = newIndex;
-
-            Type selectType = null;
-            if (selectIndex >= 0 && selectIndex < MaterialGenerate.m_AllConfigType.Count)
-            {
-                selectType = MaterialGenerate.m_AllConfigType[selectIndex];
-            }
-
-            if (selectType != null)
-            {
-                config = (MaterialConfig)CreateInstance(selectType);
-            }
-
-
 
         }
     }
