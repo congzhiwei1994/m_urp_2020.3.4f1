@@ -109,6 +109,7 @@ namespace Jefford.MaterialGenerate
             // 获取材质生成器的路径
             var path = AssetDatabase.GetAssetPath(m_materialGenetate);
 
+            // 选取config材质类型
             var newIndex = EditorGUILayout.Popup(selectIndex, nameList.ToArray());
             if (selectIndex != newIndex)
             {
@@ -130,6 +131,7 @@ namespace Jefford.MaterialGenerate
 
                 m_materialGenetate.m_config = null;
                 config = null;
+                // 更新Index
                 selectIndex = newIndex;
 
                 Type selectType = null;
@@ -146,7 +148,18 @@ namespace Jefford.MaterialGenerate
                     // 将 config 添加到指定路径path处的Asset文件
                     AssetDatabase.AddObjectToAsset(config, path);
                 }
+                // 重新导入路径path下的资源
+                AssetDatabase.ImportAsset(path);
+                // 将资源写入磁盘
+                AssetDatabase.SaveAssets();
+            }
 
+            if (config != null)
+            {
+                if (GUILayout.Button("生成或者更新"))
+                {
+                    config.GenerateMaterial();
+                }
             }
 
         }

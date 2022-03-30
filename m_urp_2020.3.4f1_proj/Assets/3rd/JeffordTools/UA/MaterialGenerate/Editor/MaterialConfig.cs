@@ -20,5 +20,10 @@ namespace Jefford.MaterialGenerate
         {
             return this.OnGetName(null);
         }
+
+        public void GenerateMaterial()
+        {
+
+        }
     }
 }
