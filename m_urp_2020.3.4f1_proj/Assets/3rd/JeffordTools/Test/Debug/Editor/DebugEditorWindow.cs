@@ -6,12 +6,21 @@ using System.IO;
 using Jefford.Csharp;
 using System;
 
+public enum Test
+{
+    测试1,
+    测试2,
+    测试3
+}
+
 
 public class DebugEditorWindow : EditorWindow
 {
-    private GameObject m_gameObject;
+    HashSet<Test> m_hash = new HashSet<Test>();
+    Dictionary<Test, int> m_Dic = new Dictionary<Test, int>();
 
-    [MenuItem("Jefford/DebugEditorWindow")]
+
+    [MenuItem("Jefford/DebugEditorWindow &q")]
     private static void Open()
     {
         var window = GetWindow<DebugEditorWindow>("DebugEditorWindow");
@@ -20,23 +29,50 @@ public class DebugEditorWindow : EditorWindow
 
     private void OnEnable()
     {
-
+        m_Dic = GetAllCheckConfig();
     }
 
     private void OnGUI()
     {
-        if (GUILayout.Button("测试"))
+
+        foreach (var item in m_Dic)
         {
-            m_gameObject.Rename("New Name");
+            var on = m_hash.Contains(item.Key);
+            var newOn = EditorGUILayout.Toggle(item.Key.ToString(), on);
+            if (on != newOn)
+            {
+                if (newOn)
+                {
+                    m_hash.Add(item.Key);
+                }
+                else
+                {
+                    m_hash.Remove(item.Key);
+                }
+            }
         }
 
+        CherkRes(false, s => { return !m_hash.Contains(s); });
     }
+
+    public Dictionary<Test, int> GetAllCheckConfig()
+    {
+        Dictionary<Test, int> dic = new Dictionary<Test, int>();
+        dic.Add(Test.测试1, 1);
+        dic.Add(Test.测试2, 2);
+        dic.Add(Test.测试3, 3);
+        return dic;
+    }
+
+    private void CherkRes(bool repair, Func<Test, bool> filter)
+    {
+        var map = GetAllCheckConfig();
+
+        foreach (var item in map)
+        {
+            Debug.LogError(filter(item.Key));
+        }
+    }
+
 }
 
-public static class MyGameObject
-{
-    public static void Rename(this GameObject go, string newName)
-    {
-        go.name = newName;
-    }
-}

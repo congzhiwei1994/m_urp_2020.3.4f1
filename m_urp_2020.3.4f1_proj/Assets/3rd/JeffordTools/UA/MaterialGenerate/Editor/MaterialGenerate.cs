@@ -38,6 +38,7 @@ namespace Jefford.MaterialGenerate
 
         public bool CheckPathValid()
         {
+            //获取此asset的路径
             var path = AssetDatabase.GetAssetPath(this);
             if (string.IsNullOrEmpty(path))
             {
@@ -95,59 +96,60 @@ namespace Jefford.MaterialGenerate
                 {
                     return false;
                 }
+                Debug.LogError(type == config.GetType());
                 return type == config.GetType();
-            });
-            Debug.LogError("selectIndex" + "======" + selectIndex);
 
-            // 将继承自MaterialConfig的非抽象类的类型转换成string类型
-            var nameList = MaterialGenerate.m_AllConfigType.ConvertAll<string>(type =>
-            {
-                var t = CreateInstance(type) as MaterialConfig;
-                return t.GetDisPlayName();
             });
 
-            // 获取材质生成器的路径
-            var path = AssetDatabase.GetAssetPath(m_materialGenetate);
+            // // 将继承自MaterialConfig的非抽象类的类型转换成string类型
+            // var nameList = MaterialGenerate.m_AllConfigType.ConvertAll<string>(type =>
+            // {
+            //     var t = CreateInstance(type) as MaterialConfig;
+            //     return t.GetDisPlayName();
+            // });
 
-            var newIndex = EditorGUILayout.Popup(selectIndex, nameList.ToArray());
-            if (selectIndex != newIndex)
-            {
-                // 选取新的Index之后，删除旧的Config
-                if (config != null)
-                {
-                    var assets = AssetDatabase.LoadAllAssetsAtPath(path);
-                    foreach (var asset in assets)
-                    {
-                        if (asset == null || AssetDatabase.IsSubAsset(asset))
-                        {
-                            AssetDatabase.RemoveObjectFromAsset(asset);
-                        }
-                    }
+            // // 获取材质生成器的路径
+            // var path = AssetDatabase.GetAssetPath(m_materialGenetate);
 
-                    AssetDatabase.SaveAssets();
-                    AssetDatabase.Refresh();
-                }
+            // var newIndex = EditorGUILayout.Popup(selectIndex, nameList.ToArray());
+            // if (selectIndex != newIndex)
+            // {
+            //     // 选取新的Index之后，删除旧的Config
+            //     if (config != null)
+            //     {
+            //         var assets = AssetDatabase.LoadAllAssetsAtPath(path);
+            //         foreach (var asset in assets)
+            //         {
+            //             if (asset == null || AssetDatabase.IsSubAsset(asset))
+            //             {
+            //                 AssetDatabase.RemoveObjectFromAsset(asset);
+            //             }
+            //         }
 
-                m_materialGenetate.m_config = null;
-                config = null;
-                selectIndex = newIndex;
+            //         AssetDatabase.SaveAssets();
+            //         AssetDatabase.Refresh();
+            //     }
 
-                Type selectType = null;
-                if (selectIndex >= 0 && selectIndex < MaterialGenerate.m_AllConfigType.Count)
-                {
-                    selectType = MaterialGenerate.m_AllConfigType[selectIndex];
-                }
+            //     m_materialGenetate.m_config = null;
+            //     config = null;
+            //     selectIndex = newIndex;
 
-                if (selectType != null)
-                {
-                    config = (MaterialConfig)CreateInstance(selectType);
-                    config.name = config.GetDisPlayName();
-                    m_materialGenetate.m_config = config;
-                    // 将 config 添加到指定路径path处的Asset文件
-                    AssetDatabase.AddObjectToAsset(config, path);
-                }
+            //     Type selectType = null;
+            //     if (selectIndex >= 0 && selectIndex < MaterialGenerate.m_AllConfigType.Count)
+            //     {
+            //         selectType = MaterialGenerate.m_AllConfigType[selectIndex];
+            //     }
 
-            }
+            //     if (selectType != null)
+            //     {
+            //         config = (MaterialConfig)CreateInstance(selectType);
+            //         config.name = config.GetDisPlayName();
+            //         m_materialGenetate.m_config = config;
+            //         // 将 config 添加到指定路径path处的Asset文件
+            //         AssetDatabase.AddObjectToAsset(config, path);
+            //     }
+
+            // }
 
         }
     }
