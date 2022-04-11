@@ -28,11 +28,6 @@ namespace UA.ResChecker
             return folder2;
         }
 
-        public void AddCheckerFolder()
-        {
-
-        }
-
     }
 }
 
