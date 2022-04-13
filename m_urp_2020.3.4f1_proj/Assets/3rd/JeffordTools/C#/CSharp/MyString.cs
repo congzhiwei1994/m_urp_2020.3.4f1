@@ -1,3 +1,5 @@
+//字符串
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
