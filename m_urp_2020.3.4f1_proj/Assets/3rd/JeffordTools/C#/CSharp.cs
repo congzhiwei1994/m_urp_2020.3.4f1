@@ -6,11 +6,12 @@ namespace Jefford.Csharp
 {
     public class CSharp : MonoBehaviour
     {
-        MyString m_string = new MyString();
+        Enemy m_enemy;
+        Boss m_boss;
         [ContextMenu("测试", false, 0)]
         void Test()
         {
-            m_string.StringTest();
+            m_boss = new Boss();
         }
 
     }
