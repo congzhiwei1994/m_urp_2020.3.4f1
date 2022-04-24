@@ -11,7 +11,7 @@ namespace Jefford.Csharp
         [ContextMenu("测试", false, 0)]
         void Test()
         {
-            m_boss = new Boss();
+            m_boss = new Boss(2, 3);
         }
 
     }

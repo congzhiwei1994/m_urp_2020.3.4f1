@@ -12,9 +12,19 @@ namespace Jefford.Csharp
     /// </summary>
     public class Enemy
     {
+        private int x;
+
+        // 父类无参的构造方法
         public Enemy()
         {
-            Debug.LogError("父类Enemy的构造函数");
+            Debug.LogError("父类Enemy的无参构造函数");
+        }
+
+        // 父类有参的构造方法
+        public Enemy(int value)
+        {
+            x = value;
+            Debug.LogError(x);
         }
     }
 
