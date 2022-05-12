@@ -27,22 +27,22 @@ namespace CustormMesh
 
         private Vector2[] GetUVs()
         {
-            return new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
+            return new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(1, 1) };
         }
 
         private Vector3[] GetVertex()
         {
-            Vector3 x = new Vector3(0, 0, 0);
-            Vector3 y = new Vector3(0, 1, 0);
-            Vector3 z = new Vector3(1, 1, 0);
-            Vector3 w = new Vector3(1, 0, 0);
+            Vector3 x = new Vector3(-1, -1, 0);
+            Vector3 y = new Vector3(-1, 1, 0);
+            Vector3 z = new Vector3(1, -1, 0);
+            Vector3 w = new Vector3(1, 1, 0);
             return new Vector3[] { x, y, z, w };
         }
 
         // 设置顶点的下标
         private int[] GetTriangles()
         {
-            return new int[] { 0, 1, 2, 0, 2, 3 };
+            return new int[] { 0, 1, 2, 1, 3, 2 };
         }
 
     }
