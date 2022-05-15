@@ -12,8 +12,14 @@ namespace Jefford.Csharp
         [ContextMenu("测试", false, 0)]
         void Test()
         {
-            m_gen = new Genericity<int>(1, 3);
-            m_gen.GetSum();
+            int b = 1;
+            b = Sum(ref b);
+            Debug.LogError(b);
+        }
+
+        int Sum(ref int a)
+        {
+            return a + 2;
         }
 
     }
