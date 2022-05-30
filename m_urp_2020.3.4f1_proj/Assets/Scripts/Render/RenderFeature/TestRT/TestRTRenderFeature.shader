@@ -1,17 +1,15 @@
 
-Shader "URP/RenderTextureToMat"
+Shader "Jefford/TestRTRenderFeature"
 {
     Properties
     {
         _BaseColor("Base Color",color) = (1,1,1,1)
-        // _MyRenderTexture("BaseMap", 2D) = "white" {}
     }
 
     SubShader
     {
         Tags { "Queue"="Geometry" "RenderType" = "Opaque" "IgnoreProjector" = "True" "RenderPipeline" = "UniversalPipeline" }
         LOD 100
-
         Pass
         {
             Name "Unlit"
@@ -41,16 +39,17 @@ Shader "URP/RenderTextureToMat"
 
             CBUFFER_START(UnityPerMaterial)
                 half4 _BaseColor;
-                float4 _MyRenderTexture_ST;
+                
             CBUFFER_END
-            TEXTURE2D (_MyRenderTexture);SAMPLER(sampler_MyRenderTexture);
+            TEXTURE2D (_TestRTRenderFeature);SAMPLER(sampler_TestRTRenderFeature);
+            
 
             Varyings vert(Attributes v)
             {
                 Varyings o = (Varyings)0;
 
                 o.positionCS = mul(UNITY_MATRIX_VP, mul(UNITY_MATRIX_M, float4(v.positionOS.xyz, 1.0))); 
-                o.uv = TRANSFORM_TEX(v.uv, _MyRenderTexture);
+                o.uv = v.uv;
                 o.fogCoord = ComputeFogFactor(o.positionCS.z);
 
                 return o;
@@ -58,9 +57,10 @@ Shader "URP/RenderTextureToMat"
 
             half4 frag(Varyings i) : SV_Target
             {
-                half2 screenUV = i.positionCS.xy / _ScaledScreenParams.xy;
-                half4 renderTexture = SAMPLE_TEXTURE2D(_MyRenderTexture, sampler_MyRenderTexture, screenUV);
-                return renderTexture * _BaseColor;
+                half4 c;
+                half4 baseMap = SAMPLE_TEXTURE2D(_TestRTRenderFeature, sampler_TestRTRenderFeature, i.uv);
+                c = baseMap * _BaseColor;
+                return c;
             }
             ENDHLSL
         }
