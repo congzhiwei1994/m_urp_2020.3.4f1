@@ -16,9 +16,7 @@ namespace Jefford
         public class TestRT
         {
             public RenderPassEvent m_event = RenderPassEvent.AfterRenderingOpaques;
-            [Range(1, 6)]
-            public int m_DownSample = 1;
-            public Material m_DrawMeshMaterial;
+          
         }
 
         public override void Create()

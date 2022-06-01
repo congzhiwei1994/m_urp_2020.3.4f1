@@ -20,17 +20,16 @@ namespace Jefford
             m_renderTargetHandle.Init("_TestRTRenderFeature");
         }
 
-        public void Setup(RenderTargetIdentifier sourceID, TestRTRenderFeature.TestRT setting, ScriptableRenderer renderer)
+        public void Setup(RenderTargetIdentifier sourceID, TestRTRenderFeature.TestRT setting,
+            ScriptableRenderer renderer)
         {
             this.m_sourceID = sourceID;
             this.m_setting = setting;
             this.m_renderer = renderer;
-            this.m_DrawMeshMaterial = setting.m_DrawMeshMaterial;
         }
 
         public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor)
         {
-
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
@@ -41,16 +40,29 @@ namespace Jefford
             // 筛选渲染相机
             if (camera.cameraType != CameraType.Game || renderingData.cameraData.renderType != CameraRenderType.Base)
                 return;
-            if (m_DrawMeshMaterial == null)
+
+            
+            // 拿到当前场景中的所有的Volume 
+            var volumeStack = VolumeManager.instance.stack;
+            var volume = volumeStack.GetComponent<TestRTRenderFeatureVolume>();
+            if (volume == null || !volume.active)
             {
-                Debug.LogError("m_DrawMeshMaterial Is Null");
                 return;
             }
 
+            var value = volume._testRTParams.value;
+            if (!value.m_isEnable || value.m_material == null)
+            {
+                return;
+            }
+            m_DrawMeshMaterial = value.m_material;
+            
+            
             // 获取当前相机RT的描述
             var cameraTargetDes = renderingData.cameraData.cameraTargetDescriptor;
             // 将获取的RT进行降采样
-            var downSamplecameraTargetDes = new RenderTextureDescriptor(cameraTargetDes.width / m_setting.m_DownSample, cameraTargetDes.height / m_setting.m_DownSample);
+            var downSamplecameraTargetDes = new RenderTextureDescriptor(cameraTargetDes.width / value.m_downSample,
+                cameraTargetDes.height / value.m_downSample);
             //    将其深度设置为0
             downSamplecameraTargetDes.depthBufferBits = 0;
             // 在池中获取一个Command Buffer
@@ -72,6 +84,7 @@ namespace Jefford
             // 将创建的 CommandBuffer Release掉
             CommandBufferPool.Release(cmd);
         }
+
         //  绘制Mesh
         private void DrawMesh(CommandBuffer cmd, CameraData cameraData)
         {
@@ -90,5 +103,4 @@ namespace Jefford
             cmd.ReleaseTemporaryRT(m_renderTargetHandle.id);
         }
     }
-
 }
