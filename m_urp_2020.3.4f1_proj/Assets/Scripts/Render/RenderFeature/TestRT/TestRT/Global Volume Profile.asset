@@ -28,3 +28,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   m_AdvancedMode: 0
+  _testRTParams:
+    m_OverrideState: 1
+    m_Value:
+      m_isEnable: 1
+      m_material: {fileID: 2100000, guid: 3c6bbffb5baf8c7438c3c4ed4de54878, type: 2}
+      m_downSample: 1

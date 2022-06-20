@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: URP_RiverWater
+  m_Shader: {fileID: 4800000, guid: ceca948eb7a4e3b47ba38ff27c707f62, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CubeMap:
+        m_Texture: {fileID: 8900000, guid: 9b14208227d207b47abf60e5852645e9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DepthMap:
+        m_Texture: {fileID: 2800000, guid: 8f92785d6fc10d14e9daf7d7a241ca0c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FoamMap:
+        m_Texture: {fileID: 2800000, guid: 3e659a9db64066a4a98a0f0df213d199, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FormMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _StartMap:
+        m_Texture: {fileID: 2800000, guid: 816ee134b3c585b449d3e2560630cc81, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WaterNormalMap:
+        m_Texture: {fileID: 2800000, guid: fe47f6b40e9ebad42852983fba562b03, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 0.586
+    - _CustormLightIntensity: 0.212
+    - _CustormLightRange: 0.714
+    - _CustormSpecularRange: 0.706
+    - _DepthRange: 0.545
+    - _FoamIntensity: 1
+    - _FoamRange: 0.922
+    - _FresnelIntensity: 0.5
+    - _FresnelRange: 0.336
+    - _IsNehateEnable: 0
+    - _NoiseScale: 1
+    - _NormalTilling: 0.995
+    - _Smoothness: 1
+    - _SpecularIntensity: 0.687
+    - _SpecularRange: 1
+    - _StartIntensity: 1
+    - _StartSpeed: 0.673
+    - _StartTilling: 0.626
+    m_Colors:
+    - _CustormLightColor: {r: 0.77254903, g: 0.99215686, b: 0.9744458, a: 1}
+    - _CustormLightDir: {r: -0.5, g: 0.56, b: -1.55, a: 0}
+    - _DeepColor: {r: 0.13803846, g: 0.16893123, b: 0.20754719, a: 1}
+    - _FresnelColor: {r: 0.9198113, g: 0.9975173, b: 1, a: 1}
+    - _ShallowColor: {r: 0.25111252, g: 0.31132078, b: 0.30924463, a: 1}
+    - _SpecularColor: {r: 0.6020381, g: 0.7603963, b: 0.7830189, a: 1}
+    - _WaterDir: {r: 0, g: -1, b: 0, a: 0}
+  m_BuildTextureStacks: []
