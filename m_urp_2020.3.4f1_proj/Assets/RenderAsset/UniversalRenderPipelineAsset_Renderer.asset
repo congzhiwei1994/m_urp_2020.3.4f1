@@ -61,9 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
   m_Name: UniversalRenderPipelineAsset_Renderer
   m_EditorClassIdentifier: 
-  m_RendererFeatures:
-  - {fileID: 2691743177872152367}
-  m_RendererFeatureMap: 2f97a6a728fe5a25
+  m_RendererFeatures: []
+  m_RendererFeatureMap: 
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -104,10 +103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f5da79bf6e7a74786dfdc6fc0ad5d0, type: 3}
   m_Name: NewTestRTRenderFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   testRTSetting:
     m_event: 450
-    m_DownSample: 4
+    m_DownSample: 5
     m_DrawMeshMaterial: {fileID: 2100000, guid: 3c6bbffb5baf8c7438c3c4ed4de54878, type: 2}
 --- !u!114 &5784216274773263806
 MonoBehaviour:
