@@ -45,10 +45,37 @@ MonoBehaviour:
   m_Name: NewTestRTRenderFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  testRTSetting:
+  testRTSettings:
+    passTags: TestRTRenderFeature
     m_event: 300
-    m_DownSample: 1
-    m_DrawMeshMaterial: {fileID: 0}
+    myCustormSettings:
+      isEnableVolumeSet: 0
+      meshMaterial: {fileID: 0}
+      downSample: 1
+    stencilStateData:
+      overrideStencilState: 0
+      stencilReference: 0
+      stencilCompareFunction: 8
+      passOperation: 0
+      failOperation: 0
+      zFailOperation: 0
+    myDepthSettings:
+      overrideDepthState: 0
+      enableZWrite: 1
+      depthCompareFunction: 4
+    myCameraSettings:
+      overrideCamera: 0
+      restoreCamera: 1
+      offset: {x: 0, y: 0, z: 0, w: 0}
+      cameraFieldOfView: 60
+    myFilterSettings:
+      RenderQueueType: 0
+      LayerMask:
+        serializedVersion: 2
+        m_Bits: 1
+      passNames: []
+    overrideMaterial: {fileID: 0}
+    overrideMaterialPassIndex: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,8 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
   m_Name: UniversalRenderPipelineAsset_Renderer
   m_EditorClassIdentifier: 
-  m_RendererFeatures: []
-  m_RendererFeatureMap: 
+  m_RendererFeatures:
+  - {fileID: 6760663422747690201}
+  m_RendererFeatureMap: d944da3e90b3d25d
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -104,10 +132,37 @@ MonoBehaviour:
   m_Name: NewTestRTRenderFeature
   m_EditorClassIdentifier: 
   m_Active: 0
-  testRTSetting:
-    m_event: 450
-    m_DownSample: 5
-    m_DrawMeshMaterial: {fileID: 2100000, guid: 3c6bbffb5baf8c7438c3c4ed4de54878, type: 2}
+  testRTSettings:
+    passTags: TestRTRenderFeature
+    m_event: 300
+    myCustormSettings:
+      isEnableVolumeSet: 0
+      meshMaterial: {fileID: 0}
+      downSample: 1
+    stencilStateData:
+      overrideStencilState: 0
+      stencilReference: 0
+      stencilCompareFunction: 8
+      passOperation: 0
+      failOperation: 0
+      zFailOperation: 0
+    myDepthSettings:
+      overrideDepthState: 0
+      enableZWrite: 1
+      depthCompareFunction: 4
+    myCameraSettings:
+      overrideCamera: 0
+      restoreCamera: 1
+      offset: {x: 0, y: 0, z: 0, w: 0}
+      cameraFieldOfView: 60
+    myFilterSettings:
+      RenderQueueType: 0
+      LayerMask:
+        serializedVersion: 2
+        m_Bits: 1
+      passNames: []
+    overrideMaterial: {fileID: 0}
+    overrideMaterialPassIndex: 0
 --- !u!114 &5784216274773263806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +176,50 @@ MonoBehaviour:
   m_Name: NewCustomRenderPassFeature
   m_EditorClassIdentifier: 
   m_Active: 1
+--- !u!114 &6760663422747690201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f5da79bf6e7a74786dfdc6fc0ad5d0, type: 3}
+  m_Name: NewTestRTRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  testRTSettings:
+    passTags: TestRTRenderFeature
+    m_event: 300
+    myCustormSettings:
+      isEnableVolumeSet: 0
+      meshMaterial: {fileID: 2100000, guid: 3c6bbffb5baf8c7438c3c4ed4de54878, type: 2}
+      downSample: 1
+    stencilStateData:
+      overrideStencilState: 0
+      stencilReference: 0
+      stencilCompareFunction: 8
+      passOperation: 0
+      failOperation: 0
+      zFailOperation: 0
+    myDepthSettings:
+      overrideDepthState: 0
+      enableZWrite: 1
+      depthCompareFunction: 4
+    myCameraSettings:
+      overrideCamera: 0
+      restoreCamera: 1
+      offset: {x: 0, y: 0, z: 0, w: 0}
+      cameraFieldOfView: 60
+    myFilterSettings:
+      RenderQueueType: 0
+      LayerMask:
+        serializedVersion: 2
+        m_Bits: 4294967295
+      passNames: []
+    overrideMaterial: {fileID: 0}
+    overrideMaterialPassIndex: 0
 --- !u!114 &7776081910255727788
 MonoBehaviour:
   m_ObjectHideFlags: 0

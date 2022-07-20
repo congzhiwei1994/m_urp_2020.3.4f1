@@ -50,7 +50,7 @@ namespace Jefford
             _profilingSampler = new ProfilingSampler(settings.passTags + _renderQueueType);
 
             // 添加Shader LightMode Tags
-            if (settings.myFilterSettings.passNames != null || settings.myFilterSettings.passNames.Length > 0)
+            if (settings.myFilterSettings.passNames != null && settings.myFilterSettings.passNames.Length > 0)
             {
                 foreach (var passName in settings.myFilterSettings.passNames)
                 {
@@ -112,6 +112,7 @@ namespace Jefford
                 var volume = volumeStack.GetComponent<TestRTRenderFeatureVolume>();
                 if (volume == null || !volume.active)
                     return;
+                
 
                 var value = volume._testRTParams.value;
                 if (!value.m_isEnable || value.m_material == null)
