@@ -77,6 +77,7 @@ namespace Jefford
 
         public override void Create()
         {
+            
             if (testRTSettings.m_event < RenderPassEvent.BeforeRenderingPrepasses)
             {
                 testRTSettings.m_event = RenderPassEvent.BeforeRenderingPrepasses;

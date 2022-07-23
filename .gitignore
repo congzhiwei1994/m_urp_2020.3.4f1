@@ -9,3 +9,9 @@
 *.sln
 *.csproj
 /m_urp_2020.3.4f1_proj/UserSettings
+m_urp_2020.3.4f1_proj/.idea
+*.csproj
+m_urp_2020.3.4f1_proj/Unity.EditorCoroutines.Editor.csproj
+m_urp_2020.3.4f1_proj/Unity.UPA.Editor.csproj
+m_urp_2020.3.4f1_proj/Unity.UPA.Runtime.csproj
+m_urp_2020.3.4f1_proj/UserSettings/EditorUserSettings.asset

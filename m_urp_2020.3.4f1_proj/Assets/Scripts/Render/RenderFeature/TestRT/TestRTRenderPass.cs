@@ -105,6 +105,7 @@ namespace Jefford
             if (camera.cameraType != CameraType.Game || renderingData.cameraData.renderType != CameraRenderType.Base)
                 return;
 
+
             // -------------------------------------------- 通过Volume 设置材质 --------------------------------------------
             if (_myCustormSettings.isEnableVolumeSet)
             {
@@ -112,7 +113,7 @@ namespace Jefford
                 var volume = volumeStack.GetComponent<TestRTRenderFeatureVolume>();
                 if (volume == null || !volume.active)
                     return;
-                
+
 
                 var value = volume._testRTParams.value;
                 if (!value.m_isEnable || value.m_material == null)
@@ -174,7 +175,8 @@ namespace Jefford
                 cmd.Clear();
             }
 
-            context.DrawRenderers(renderingData.cullResults, ref drawingSettings, ref _filteringSettings);
+            context.DrawRenderers(renderingData.cullResults, ref drawingSettings, ref _filteringSettings,
+                ref _renderStateBlock);
 
             MyCustormPostProcessing(cmd, downSamplecameraTargetDes, renderingData);
 
@@ -191,7 +193,8 @@ namespace Jefford
             RenderingData renderingData)
         {
             cmd.GetTemporaryRT(_renderTargetHandle.id, cameraTaget); // 按照获取当前相机RT的描述设置来获取的RT
-            cmd.Blit(_sourceID, _renderTargetHandle.Identifier()); // 将 m_sourceID -->> Blit -->> m_renderTargetHandle
+            Blit(cmd, _sourceID, _renderTargetHandle.Identifier());
+            // cmd.Blit(_sourceID, _renderTargetHandle.Identifier()); // 将 m_sourceID -->> Blit -->> m_renderTargetHandle
             cmd.SetGlobalTexture("_TestRTRenderFeature",
                 _renderTargetHandle.Identifier()); // 将 m_renderTargetHandle设置为全局变量
             cmd.SetRenderTarget(_sourceID, m_renderer.cameraDepthTarget); // 将RT设置回原来的RenderTarget
